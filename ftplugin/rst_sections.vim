@@ -317,9 +317,10 @@ def to_standard_sections(buf, curr_line=0):
     max_level = len(STATE_SEQ) - 1
     cumulative_offset = 0
     for section, level in zip(sections, levels):
-        if level > max_level:
-            raise ValueError('Levels too deep for standard')
         line_no, char, above = section
+        if level > max_level:
+            raise ValueError('Levels nested too deep (%d) for standard at '
+                             'line %d' % (level, line_no + 1))
         line_no += cumulative_offset
         to_char, to_above = STATE_SEQ[level]
         new_line = change_section(buf, line_no, above, to_char, to_above)
