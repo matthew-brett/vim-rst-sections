@@ -6,7 +6,8 @@ This is a small vim extension to help making sections in restructured text
 documents.
 
 It's very closely based on the nice https://github.com/nvie/vim-rst-tables
-extension by Vincent Driessen.
+extension by Vincent Driessen.  It includes some of Vincents's code from
+https://github.com/nvie/vim_bridge.
 
 To install, just copy the files starting at the directory containing this
 README, into your vim path (``$HOME/.vim`` on unix).
@@ -19,10 +20,12 @@ License
 *******
 
 I could not see a license for ``vim-rst-tables`` on which this is based.
+``vim-bridge`` is BSD licensed, as is this code.
 
-Assuming that that code is in the public domain, I (Matthew Brett) release this
-code under the 2-clause BSD license.  The full text is in the ``LICENSE`` file
-in the same directory as this README. Thanks to Vincent Driessen for sharing.
+Assuming that that the ``vim-rst-tables`` code is in the public domain or BSD
+licensed, I (Matthew Brett) release this code under the 2-clause BSD license.
+The full text is in the ``LICENSE`` file in the same directory as this README.
+Thanks to Vincent Driessen for sharing.
 
 ******
 In use

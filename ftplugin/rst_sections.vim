@@ -1,8 +1,10 @@
 " reStructuredText sections plugin
 " Language:     Python (ft=python)
 " Maintainer:   Matthew Brett
-" Version:      Vim 7 (may work with lower Vim versions, but not tested)
-" URL:          http://github.com/mathew-brett/myvim
+" Version:      0.1
+" URL:          http://github.com/mathew-brett/vim-rst-sections
+"
+" VimVersion:   Vim 7 (may work with lower Vim versions, but not tested)
 "
 " I got the structure of this plugin from
 " http://github.com/nvie/vim-rst-tables by Vincent Driessen
