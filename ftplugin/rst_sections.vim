@@ -251,11 +251,11 @@ def section_levels(section_defs):
         return ()
     if sorted(section_defs, key = lambda x : x[0]) != list(section_defs):
         raise ValueError('section_defs must be in line number order')
-    section_ids = [(char, flag) for _, char, flag in section_defs]
-    level = 0
-    levels_d = {section_ids[0]: level}
-    levels = [0]
-    for sect_id in section_ids[1:]:
+    level = -1 # will go up to 0 in first iteration through loop
+    levels_d = {}
+    levels = []
+    for line_no, char, flag in section_defs:
+        sect_id = (char, flag)
         if not sect_id in levels_d:
             # Must be down one
             level += 1
@@ -264,7 +264,8 @@ def section_levels(section_defs):
             new_level = levels_d[sect_id]
             # Can't go down more than one level
             if new_level > level + 1:
-                raise ValueError("Inconsistent levels")
+                raise ValueError("Inconsistent level at line %d" %
+                                 (line_no + 1,))
             level = new_level
         levels.append(level)
     return tuple(levels)
