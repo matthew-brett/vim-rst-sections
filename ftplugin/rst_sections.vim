@@ -297,16 +297,29 @@ def change_section(buf, line_no, from_above, to_char, to_above):
     return line_no
 
 
-def to_standard_sections(buf, curr_line=0):
+def to_standard_sections(buf, curr_line=0, standard=STATE_SEQ):
     """ Make sections correspond to standard section sequence
 
     Parameters
     ----------
     buf : buffer-like object
+    curr_line : int, optional
+        current index of line number in buffer.  This might be the line
+        containing the cursor (but in buffer index numbers not line numbers).
+        Because the line numbers can change with reformatting, we can keep track
+        of this line number and return the new position after reformatting.
+    standard : sequence, optional
+        standard to apply.  Sequence of length 2 tuples containing definition of
+        section for levels where ``standard[2]`` is the definition for level 2
+        (starting at 0). Tuples are (str, bool) being (char, above) where
+        ``char`` is the char for the rule lines, and ``above`` is True iff there
+        is an over-rule as well as an under-rule.
 
     Returns
     -------
-    None
+    curr_line_changed : int
+        `curr_line` adjusted for any changes to the line numbers causes by
+        processing the buffer
 
     Raises
     ------
@@ -314,15 +327,18 @@ def to_standard_sections(buf, curr_line=0):
     """
     sections = all_sections(buf)
     levels = section_levels(sections)
-    max_level = len(STATE_SEQ) - 1
+    max_level = len(standard) - 1
+    # Generate level error before changing buffer
+    for i, level in enumerate(levels):
+        if level > max_level:
+            raise ValueError('Levels nested too deep (%d) for standard max '
+                             '(%d) at buffer line %d' %
+                             (level, max_level, sections[i][0] + 1))
     cumulative_offset = 0
     for section, level in zip(sections, levels):
         line_no, char, above = section
-        if level > max_level:
-            raise ValueError('Levels nested too deep (%d) for standard at '
-                             'line %d' % (level, line_no + 1))
         line_no += cumulative_offset
-        to_char, to_above = STATE_SEQ[level]
+        to_char, to_above = standard[level]
         new_line = change_section(buf, line_no, above, to_char, to_above)
         line_offset = new_line - line_no
         if curr_line >= line_no:
