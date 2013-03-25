@@ -119,8 +119,10 @@ STATE_SEQ = (
     ('^', False),
     ('"', False),
     ('#', True))
-NEXT_STATES = dict([(None, STATE_SEQ[0])] + zip(STATE_SEQ[:-1], STATE_SEQ[1:]))
-PREV_STATES = dict([(None, STATE_SEQ[0])] + zip(STATE_SEQ[1:], STATE_SEQ[:-1]))
+NEXT_STATES = dict([(None, STATE_SEQ[0])] +
+                   list(zip(STATE_SEQ[:-1], STATE_SEQ[1:])))
+PREV_STATES = dict([(None, STATE_SEQ[0])] +
+                   list(zip(STATE_SEQ[1:], STATE_SEQ[:-1])))
 
 
 def current_lines():
