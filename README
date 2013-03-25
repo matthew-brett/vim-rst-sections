@@ -5,22 +5,32 @@ rst-sections
 This is a small vim extension to help making sections in restructured text
 documents.
 
-It's very closely based on the nice https://github.com/nvie/vim-rst-tables
-extension by Vincent Driessen.  It includes some of Vincents's code from
-https://github.com/nvie/vim_bridge.
+It was inspired by the nice https://github.com/nvie/vim-rst-tables extension by
+Vincent Driessen.  The structure of this extension follows ``vim-rst-tables``,
+and it uses more of Vincents's code from https://github.com/nvie/vim_bridge.
 
-To install, just copy the files starting at the directory containing this
-README, into your vim path (``$HOME/.vim`` on unix).
+For install instructions see the ``Install`` section at the end.
 
-You'll need python compiled into your vim for it to work (`:version` in vim will
-tell you).
+************
+Requirements
+************
+
+You'll need python compiled into your vim (`:version` in vim will tell you).
+
+I've tested the python tests with Python 2.5, 2.6 and 3.3.
+
+**************
+Latest version
+**************
+
+Should be at https://github.com/matthew-brett/vim-rst-sections
 
 *******
 License
 *******
 
-I could not see a license for ``vim-rst-tables`` on which this is based.
-``vim-bridge`` is BSD licensed, as is this code.
+I could not see a license for ``vim-rst-tables``. ``vim-rst-sections`` contains
+some structure, but very little code, from ``vim-rst-tables``.
 
 Assuming that that the ``vim-rst-tables`` code is in the public domain or BSD
 licensed, I (Matthew Brett) release this code under the 2-clause BSD license.
@@ -124,5 +134,37 @@ for you::
     #########################
     A section for the big one
     #########################
+
+*******
+Install
+*******
+
+I hope you are using vim ``pathogen``!
+
+If you are using pathogen
+=========================
+
+For the zip file:
+
+* Change into your `~/.vim/bundle`` directory
+* Unzip the zip archive
+
+From latest code at https://github.com/matthew-brett/vim-rst-sections:
+
+* Change into your `~/.vim/bundle`` directory
+* clone ``vim-rst-sections`` into this directory, or add it as a submodule
+
+If you aren't using pathogen
+============================
+
+It's a really good idea to use pathogen.  But:
+
+For the zip file:
+
+* Unzip to some directory
+* ``cd`` into the new subdirectory ``vim-rst-sections-<version>`` where
+  ``<version>`` is the version number (e.g ``cd vim-rst-sections-0.1``)
+* copy the contents of the ``ftplugin`` directory into your ``~/.vim/ftplugin``
+  directory (e.g ``cp ftplugin/* ~/.vim/ftplugin``).
 
 .. vim: ft=rst
