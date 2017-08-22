@@ -139,32 +139,37 @@ for you::
 Install
 *******
 
+To get started, get all the code you need in some directory::
+
+    git clone https://github.com/matthew-brett/vim-rst-sections
+    cd vim-rst-sections
+    git submodule update --init
+
+Now to install.
+
 I hope you are using vim ``pathogen``!
 
 If you are using pathogen
 =========================
 
-For the zip file:
+* Change into your `~/.vim/bundle`` directory and::
 
-* Change into your `~/.vim/bundle`` directory
-* Unzip the zip archive
-
-From latest code at https://github.com/matthew-brett/vim-rst-sections:
-
-* Change into your `~/.vim/bundle`` directory
-* clone ``vim-rst-sections`` into this directory, or add it as a submodule
+    git clone https://github.com/matthew-brett/vim-rst-sections
+    cd vim-rst-sections
+    git submodule update --init --recursive
 
 If you aren't using pathogen
 ============================
 
-It's a really good idea to use pathogen.  But:
+It's a really good idea to use pathogen, but if you aren't::
 
-For the zip file:
+    mkdir some_directory
+    cd some_directory
+    git clone https://github.com/matthew-brett/vim-rst-sections
+    cd vim-rst-sections
+    git submodule update --init --recursive
 
-* Unzip to some directory
-* ``cd`` into the new subdirectory ``vim-rst-sections-<version>`` where
-  ``<version>`` is the version number (e.g ``cd vim-rst-sections-0.1``)
-* copy the contents of the ``ftplugin`` directory into your ``~/.vim/ftplugin``
-  directory (e.g ``cp ftplugin/* ~/.vim/ftplugin``).
+Now copy the contents of the ``ftplugin`` directory into your
+``~/.vim/ftplugin`` directory (e.g ``cp -r ftplugin/* ~/.vim/ftplugin``).
 
 .. vim: ft=rst

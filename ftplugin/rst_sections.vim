@@ -16,17 +16,27 @@ if exists("g:loaded_rst_sections_ftplugin")
 endif
 let loaded_rst_sections_ftplugin = 1
 
-python << endpython
+if has('python')
+    command! -nargs=1 Python python <args>
+elseif has('python3')
+    command! -nargs=1 Python python3 <args>
+else
+    echo "Error: Requires Vim compiled with +python or +python3"
+    finish
+endif
+
+Python << endpython
 
 import vim
 
 import sys
 from os.path import dirname
 
-# get the directory this script is in: the vim_bridge python module should be
-# installed there.
+from os.path import dirname, join as pjoin
+
+# get the directory this script is in: the vim_bridge python module should be installed there.
 our_pth = dirname(vim.eval('expand("<sfile>")'))
-sys.path.insert(0, our_pth)
+sys.path.insert(0, pjoin(our_pth, 'vim_bridge'))
 
 import re
 import textwrap
