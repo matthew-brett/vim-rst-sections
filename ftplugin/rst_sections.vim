@@ -16,13 +16,26 @@ if exists("g:loaded_rst_sections_ftplugin")
 endif
 let loaded_rst_sections_ftplugin = 1
 
-if has('python')
+" Default to Python 3
+let py_cmd_ver = 'python3'
+let py_cmd_ver_other = 'python'
+if exists('g:rst_prefer_python_version') &&
+            \ g:rst_prefer_python_version == 3
+    let py_cmd_ver = 'python3'
+    let py_cmd_ver_other = 'python'
+endif
+if !has(py_cmd_ver)
+    let py_cmd_ver = py_cmd_ver_other
+    if !has(py_cmd_ver)
+        echoerr "Error: Requires Vim compiled with +python or +python3"
+        finish
+    endif
+endif
+
+if py_cmd_ver == 'python'
     command! -nargs=1 Python python <args>
-elseif has('python3')
-    command! -nargs=1 Python python3 <args>
 else
-    echo "Error: Requires Vim compiled with +python or +python3"
-    finish
+    command! -nargs=1 Python python3 <args>
 endif
 
 Python << endpython
