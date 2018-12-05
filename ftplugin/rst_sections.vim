@@ -19,10 +19,11 @@ let loaded_rst_sections_ftplugin = 1
 " Default to Python 3
 let py_cmd_ver = 'python3'
 let py_cmd_ver_other = 'python'
+" Allow user to select Python 2
 if exists('g:rst_prefer_python_version') &&
-            \ g:rst_prefer_python_version == 3
-    let py_cmd_ver = 'python3'
-    let py_cmd_ver_other = 'python'
+            \ g:rst_prefer_python_version == 2
+    let py_cmd_ver = 'python'
+    let py_cmd_ver_other = 'python3'
 endif
 if !has(py_cmd_ver)
     let py_cmd_ver = py_cmd_ver_other
@@ -43,7 +44,6 @@ Python << endpython
 import vim
 
 import sys
-from os.path import dirname
 
 from os.path import dirname, join as pjoin
 
